@@ -213,6 +213,127 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/pipelineTEST')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data2",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureDatabricksDeltaLakeSink",
+								"importSettings": {
+									"type": "AzureDatabricksDeltaLakeImportCommand"
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "linkedService1",
+									"type": "LinkedServiceReference"
+								}
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ZvireID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "ZvireID",
+											"type": "Int"
+										}
+									},
+									{
+										"source": {
+											"name": "MajitelID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "MajitelID",
+											"type": "Int"
+										}
+									},
+									{
+										"source": {
+											"name": "Jmeno",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Jmeno",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Druh",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Druh",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Vek",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "Vek",
+											"type": "Int"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "zvireTable",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureDatabricksDeltaLakeDataset3",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/zvireTable')]",
+				"[concat(variables('factoryId'), '/datasets/AzureDatabricksDeltaLakeDataset3')]",
+				"[concat(variables('factoryId'), '/linkedServices/linkedService1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureDatabricksDeltaLakeDataset1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -506,6 +627,51 @@
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/zvire')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ZvireID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MajitelID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Jmeno",
+						"type": "varchar"
+					},
+					{
+						"name": "Druh",
+						"type": "varchar"
+					},
+					{
+						"name": "Vek",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Zvire"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/zvireTable')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
