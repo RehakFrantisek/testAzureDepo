@@ -1,0 +1,34 @@
+{
+	"name": "AzureDatabricksDeltaLakeDataset2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabricksDeltaLake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureDatabricksDeltaLakeDataset",
+		"typeProperties": {
+			"database": "default",
+			"table": "majitel"
+		},
+		"schema": [
+			{
+				"name": "Id",
+				"type": "integer"
+			},
+			{
+				"name": "Jmeno",
+				"type": "string"
+			},
+			{
+				"name": "Prijmeni",
+				"type": "string"
+			},
+			{
+				"name": "Adresa",
+				"type": "string"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

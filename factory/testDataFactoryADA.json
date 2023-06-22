@@ -1,0 +1,9 @@
+{
+	"name": "testDataFactoryADA",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7136fb09-20cd-409a-a370-56ac0e76b71d",
+		"tenantId": "dd92f8ec-83fc-44c4-b277-1c4120fae21c"
+	}
+}
