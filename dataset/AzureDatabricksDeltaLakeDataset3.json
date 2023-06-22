@@ -1,0 +1,37 @@
+{
+	"name": "AzureDatabricksDeltaLakeDataset3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabricksDeltaLake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureDatabricksDeltaLakeDataset",
+		"typeProperties": {
+			"database": "default",
+			"table": "zvire"
+		},
+		"schema": [
+			{
+				"name": "ZvireID",
+				"type": "integer"
+			},
+			{
+				"name": "MajitelID",
+				"type": "integer"
+			},
+			{
+				"name": "Jmeno",
+				"type": "string"
+			},
+			{
+				"name": "Druh",
+				"type": "string"
+			},
+			{
+				"name": "Vek",
+				"type": "integer"
+			}
+		]
+	}
+}
