@@ -13,6 +13,92 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/zvire')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ZvireID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MajitelID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Jmeno",
+						"type": "varchar"
+					},
+					{
+						"name": "Druh",
+						"type": "varchar"
+					},
+					{
+						"name": "Vek",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Zvire"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/zvireTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ZvireID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MajitelID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Jmeno",
+						"type": "varchar"
+					},
+					{
+						"name": "Druh",
+						"type": "varchar"
+					},
+					{
+						"name": "Vek",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Zvire"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -145,9 +231,12 @@
 								"partitionOption": "None"
 							},
 							"sink": {
-								"type": "AzureDatabricksDeltaLakeSink",
-								"importSettings": {
-									"type": "AzureDatabricksDeltaLakeImportCommand"
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
 								}
 							},
 							"enableStaging": true,
@@ -210,7 +299,12 @@
 											"type": "Int"
 										}
 									}
-								]
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
 							}
 						},
 						"inputs": [
@@ -222,7 +316,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "AzureDatabricksDeltaLakeDataset3",
+								"referenceName": "Parquet1",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -235,7 +329,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/zvireTable')]"
+			]
 		}
 	]
 }

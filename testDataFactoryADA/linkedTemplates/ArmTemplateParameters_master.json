@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "testDataFactoryADA"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
 		"AzureDatabricks1_accessToken": {
 			"value": ""
 		},
@@ -28,6 +31,9 @@
 		},
 		"linkedService1_accountKey": {
 			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://teststorageada.dfs.core.windows.net/"
 		},
 		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 			"value": "0620-065736-2vdx2cw9"
