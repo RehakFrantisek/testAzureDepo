@@ -1,108 +1,116 @@
 {
-    "name": "pipelineTEST",
-    "properties": {
-        "activities": [
-            {
-                "name": "Copy data2",
-                "type": "Copy",
-                "dependsOn": [],
-                "policy": {
-                    "timeout": "0.12:00:00",
-                    "retry": 0,
-                    "retryIntervalInSeconds": 30,
-                    "secureOutput": false,
-                    "secureInput": false
-                },
-                "userProperties": [],
-                "typeProperties": {
-                    "source": {
-                        "type": "SqlServerSource",
-                        "queryTimeout": "02:00:00",
-                        "partitionOption": "None"
-                    },
-                    "sink": {
-                        "type": "AzureDatabricksDeltaLakeSink",
-                        "importSettings": {
-                            "type": "AzureDatabricksDeltaLakeImportCommand"
-                        }
-                    },
-                    "enableStaging": true,
-                    "stagingSettings": {
-                        "linkedServiceName": {
-                            "referenceName": "linkedService1",
-                            "type": "LinkedServiceReference"
-                        }
-                    },
-                    "translator": {
-                        "type": "TabularTranslator",
-                        "mappings": [
-                            {
-                                "source": {
-                                    "name": "ZvireID",
-                                    "type": "Int32"
-                                },
-                                "sink": {
-                                    "name": "ZvireID",
-                                    "type": "Int"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "MajitelID",
-                                    "type": "Int32"
-                                },
-                                "sink": {
-                                    "name": "MajitelID",
-                                    "type": "Int"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "Jmeno",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "Jmeno",
-                                    "type": "String"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "Druh",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "Druh",
-                                    "type": "String"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "Vek",
-                                    "type": "Int32"
-                                },
-                                "sink": {
-                                    "name": "Vek",
-                                    "type": "Int"
-                                }
-                            }
-                        ]
-                    }
-                },
-                "inputs": [
-                    {
-                        "referenceName": "zvireTable",
-                        "type": "DatasetReference"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "referenceName": "AzureDatabricksDeltaLakeDataset3",
-                        "type": "DatasetReference"
-                    }
-                ]
-            }
-        ],
-        "annotations": []
-    }
+	"name": "pipelineTEST",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data2",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "linkedService1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ZvireID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ZvireID",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "MajitelID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "MajitelID",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "Jmeno",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Jmeno",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Druh",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Druh",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Vek",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "Vek",
+									"type": "Int"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "zvireTable",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
 }
