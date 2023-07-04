@@ -5,12 +5,29 @@
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"ZvireID": {
+				"type": "int"
+			},
+			"MajiteID": {
+				"type": "int"
+			},
+			"Jmeno": {
+				"type": "string"
+			},
+			"Druh": {
+				"type": "string"
+			},
+			"Vek": {
+				"type": "int"
+			}
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": "adfstagedcopytempdata"
+				"fileSystem": "testtest"
 			},
 			"compressionCodec": "snappy"
 		},
