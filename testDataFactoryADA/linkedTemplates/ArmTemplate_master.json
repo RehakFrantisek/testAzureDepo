@@ -92,6 +92,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
 					"AzureDatabricks1_accessToken": {
 						"value": "[parameters('AzureDatabricks1_accessToken')]"
 					},
@@ -103,9 +106,6 @@
 					},
 					"linkedService1_accountKey": {
 						"value": "[parameters('linkedService1_accountKey')]"
-					},
-					"AzureDataLakeStorage1_accountKey": {
-						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					},
 					"SqlServer1_connectionString": {
 						"value": "[parameters('SqlServer1_connectionString')]"
@@ -119,14 +119,14 @@
 					"SqlServerLinkedService_password": {
 						"value": "[parameters('SqlServerLinkedService_password')]"
 					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
 					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					},
 					"linkedService1_properties_typeProperties_url": {
 						"value": "[parameters('linkedService1_properties_typeProperties_url')]"
-					},
-					"AzureDataLakeStorage1_properties_typeProperties_url": {
-						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
 					"SqlServer1_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServer1_properties_typeProperties_userName')]"
