@@ -36,51 +36,61 @@
 							{
 								"source": {
 									"name": "ZvireID",
-									"type": "Int32"
+									"type": "Int32",
+									"physicalType": "int"
 								},
 								"sink": {
 									"name": "ZvireID",
-									"type": "Int"
+									"type": "Int32",
+									"physicalType": "INT_32"
 								}
 							},
 							{
 								"source": {
 									"name": "MajitelID",
-									"type": "Int32"
+									"type": "Int32",
+									"physicalType": "int"
 								},
 								"sink": {
 									"name": "MajitelID",
-									"type": "Int"
+									"type": "Int32",
+									"physicalType": "INT_32"
 								}
 							},
 							{
 								"source": {
 									"name": "Jmeno",
-									"type": "String"
+									"type": "String",
+									"physicalType": "varchar"
 								},
 								"sink": {
 									"name": "Jmeno",
-									"type": "String"
+									"type": "String",
+									"physicalType": "UTF8"
 								}
 							},
 							{
 								"source": {
 									"name": "Druh",
-									"type": "String"
+									"type": "String",
+									"physicalType": "varchar"
 								},
 								"sink": {
 									"name": "Druh",
-									"type": "String"
+									"type": "String",
+									"physicalType": "UTF8"
 								}
 							},
 							{
 								"source": {
 									"name": "Vek",
-									"type": "Int32"
+									"type": "Int32",
+									"physicalType": "int"
 								},
 								"sink": {
 									"name": "Vek",
-									"type": "Int"
+									"type": "Int32",
+									"physicalType": "INT_32"
 								}
 							}
 						],
@@ -100,7 +110,14 @@
 				"outputs": [
 					{
 						"referenceName": "Parquet1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"ZvireID": 0,
+							"MajiteID": 0,
+							"Jmeno": "test",
+							"Druh": "test",
+							"Vek": 0
+						}
 					}
 				]
 			}
